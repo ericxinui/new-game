@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cu632opuhe55s"]
+
+[ext_resource type="Script" uid="uid://df6a01o01ngbo" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dtxcglirgxix1" path="res://godotzinho.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b1n8qciifc1u1" path="res://camera_2d.gd" id="3_h2yge"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(1244.5, 20)
+
+[node name="Node2D" type="Node2D" unique_id=1502116654 node_paths=PackedStringArray("players")]
+script = ExtResource("1_h2yge")
+players = [NodePath("CharacterBody2D"), NodePath("CharacterBody2D2"), NodePath("CharacterBody2D3")]
+
+[node name="CharacterBody2D" parent="." unique_id=256313423 instance=ExtResource("1_ig7tw")]
+CHAR_COLOR = Color(2.3102762e-06, 0.73907375, 0.07874375, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=609473047]
+scale = Vector2(3, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1940023936]
+material = SubResource("CanvasItemMaterial_0xm2m")
+position = Vector2(9.75, 106)
+shape = SubResource("RectangleShape2D_h2yge")
+debug_color = Color(0.23718661, 0.5690659, 0.773151, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=833853182]
+clip_contents = true
+offset_left = -602.0
+offset_top = 94.0
+offset_right = 626.0
+offset_bottom = 116.0
+color = Color(0.54509807, 0.30980393, 0.18039216, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=38186158]
+zoom = Vector2(2, 2)
+limit_left = -1000
+limit_right = 1000
+limit_bottom = 500
+position_smoothing_enabled = true
+script = ExtResource("3_h2yge")
+
+[node name="CharacterBody2D2" parent="." unique_id=1880748061 instance=ExtResource("1_ig7tw")]
+position = Vector2(10, 0)
+CHAR_COLOR = Color(1, 0, 0, 1)
+
+[node name="CharacterBody2D3" parent="." unique_id=238476446 instance=ExtResource("1_ig7tw")]
+position = Vector2(10, 0)
+CHAR_COLOR = Color(0.107795216, 0.34480062, 1, 1)
