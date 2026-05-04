@@ -41,17 +41,25 @@ func _physics_process(delta: float) -> void:
 			break
 
 	# Nova lógica de gravidade
-	if not is_on_floor() and not standing_on_ally:
-		velocity += get_gravity() * delta
-	elif is_on_floor() or standing_on_ally:
+	if is_on_floor() or standing_on_ally:
 		# Reseta o pulo se estiver no chão OU em cima de um amigo
 		jumps_left = MAX_JUMPS
+		# Pega a normal do chão (o vetor que aponta "para fora" da rampa)
+		var normal = get_floor_normal()
+		# Calcula o ângulo da rampa em radianos
+		var target_rotation = normal.angle() + PI/2
+		# Aplica a rotação suavemente (lerp) para não ficar travado
+		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, target_rotation, 0.2)
+
+	elif not is_on_floor() and not standing_on_ally:
+		velocity += get_gravity() * delta
+		# Volta para a rotação 0 quando estiver no ar
+		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, 0, 0.2)
 
 	# Handle jump and double jump.
 	if Input.is_action_just_pressed("jump") and jumps_left > 0:
 		velocity.y = JUMP_VELOCITY
 		jumps_left -= 1
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
