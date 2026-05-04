@@ -46,10 +46,8 @@ func _physics_process(delta: float) -> void:
 		jumps_left = MAX_JUMPS
 		# Pega a normal do chão (o vetor que aponta "para fora" da rampa)
 		var normal = get_floor_normal()
-		# Calcula o ângulo da rampa em radianos
-		var target_rotation = normal.angle() + PI/2
-		# Aplica a rotação suavemente (lerp) para não ficar travado
-		$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, target_rotation, 0.2)
+		# Rotaciona o CharacterBody2D inteiro
+		rotation = lerp_angle(rotation, normal.angle() + PI/2, 0.2)
 
 	elif not is_on_floor() and not standing_on_ally:
 		velocity += get_gravity() * delta
@@ -78,4 +76,4 @@ func _physics_process(delta: float) -> void:
 			if object_above is CharacterBody2D:
 				# "Empresta" um pouco da sua velocidade para o de cima
 				# para que ele não atue como uma âncora (tira o efeito de lag)
-				object_above.velocity.x = velocity.x
+				object_above.velocity = velocity
