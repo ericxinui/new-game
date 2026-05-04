@@ -3,11 +3,22 @@
 [ext_resource type="Script" uid="uid://df6a01o01ngbo" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dtxcglirgxix1" path="res://godotzinho.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b1n8qciifc1u1" path="res://camera_2d.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://55v65qge6nm" path="res://trampolin.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://b512dcl6oq3y7" path="res://area_2d_portal.gd" id="5_lquwl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(1226.6667, 22)
+size = Vector2(783.0001, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(194.00005, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(3465.5, 296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(128, 168)
 
 [node name="Node2D" type="Node2D" unique_id=1502116654 node_paths=PackedStringArray("players")]
 position = Vector2(-1, 0)
@@ -23,16 +34,26 @@ scale = Vector2(3, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1940023936]
 z_index = 1
 material = SubResource("CanvasItemMaterial_0xm2m")
-position = Vector2(12, 105)
+position = Vector2(-209.8334, 105)
 shape = SubResource("RectangleShape2D_h2yge")
 debug_color = Color(0.23718661, 0.5690659, 0.773151, 0.41960785)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=536482797]
+position = Vector2(-217.61253, 0.3366897)
+rotation = -0.0013229166
+scale = Vector2(0.6381163, 1)
 color = Color(0.4433208, 0.27048415, 9.62615e-08, 1)
-polygon = PackedVector2Array(-597.00006, 95, 624.6667, 95, 625, 115, -601.3334, 115, -601.00006, 96)
+polygon = PackedVector2Array(-597.00006, 95, 624.6667, 95, 624.9998, 104, 625, 115, -601.3334, 115, -601.00006, 96)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=572555569]
+position = Vector2(524.6667, 104)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D" unique_id=309028233]
+color = Color(0.9254902, 0.37254903, 0.24313726, 1)
+polygon = PackedVector2Array(427.00003, 96, 427.00003, 112, 621.6667, 112, 621.6667, 96)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=38186158]
-zoom = Vector2(2, 2)
 limit_left = -2000
 limit_right = 2000
 limit_bottom = 1000
@@ -53,3 +74,39 @@ polygon = PackedVector2Array(192.66667, 14, 409.6667, -111, 405.6667, -5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=915758006]
 polygon = PackedVector2Array(405.33334, -4, 197, 13, 409.33334, -109)
+
+[node name="StaticBody2DEarth" type="StaticBody2D" parent="." unique_id=2059227515]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2DEarth" unique_id=1411186526]
+position = Vector2(452.25, 676)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2DEarth" unique_id=500001098]
+position = Vector2(133.77283, 0)
+scale = Vector2(1.1045917, 1)
+color = Color(0.9254902, 0.37254903, 0.24313726, 1)
+polygon = PackedVector2Array(-1271, 520, 1857, 528, 1857.0002, 672.80005, 1857, 824, -1279, 832)
+
+[node name="Area2DTrampolin" type="Area2D" parent="." unique_id=405609659]
+position = Vector2(897, 496)
+script = ExtResource("4_1bvp3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2DTrampolin" unique_id=2037508760]
+position = Vector2(18.19999, -0.6499996)
+scale = Vector2(0.951389, 1.0208333)
+polygon = PackedVector2Array(0, 24, 192, 24, 288, 24, 264, 0, 24, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2DTrampolin" unique_id=921708932]
+color = Color(0.05224125, 0, 0.74580705, 1)
+polygon = PackedVector2Array(16, 24, 40, 0, 272, 0, 296, 24)
+
+[node name="Area2DPortal" type="Area2D" parent="." unique_id=327348271]
+script = ExtResource("5_lquwl")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2DPortal" unique_id=750666316]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1215, 520, -1087, 520, -1087, 352, -1151, 320, -1215, 352, -1215, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DPortal" unique_id=1441257012]
+position = Vector2(-1151, 436)
+shape = SubResource("RectangleShape2D_7mycd")

@@ -7,6 +7,9 @@ const MAX_JUMPS = 2
 
 var jumps_left = MAX_JUMPS
 
+## Captured once at scene load; used by portals etc. for safe respawn.
+var initial_spawn_global: Vector2
+
 var is_active_leader: bool = false
 
 func set_is_leader(value: bool):
@@ -16,6 +19,7 @@ func set_is_leader(value: bool):
 
 
 func _ready():
+	initial_spawn_global = global_position
 	# Set the color of the Sprite2D to match the exported CHAR_COLOR variable.
 	$Sprite2D.modulate = CHAR_COLOR
 
