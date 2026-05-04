@@ -7,11 +7,12 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(1244.5, 20)
+size = Vector2(1226.6667, 22)
 
 [node name="Node2D" type="Node2D" unique_id=1502116654 node_paths=PackedStringArray("players")]
+position = Vector2(-1, 0)
 script = ExtResource("1_h2yge")
-players = [NodePath("CharacterBody2D"), NodePath("CharacterBody2D2"), NodePath("CharacterBody2D3")]
+players = [NodePath("CharacterBody2D"), NodePath("CharacterBody2D2")]
 
 [node name="CharacterBody2D" parent="." unique_id=256313423 instance=ExtResource("1_ig7tw")]
 CHAR_COLOR = Color(2.3102762e-06, 0.73907375, 0.07874375, 1)
@@ -20,32 +21,35 @@ CHAR_COLOR = Color(2.3102762e-06, 0.73907375, 0.07874375, 1)
 scale = Vector2(3, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1940023936]
+z_index = 1
 material = SubResource("CanvasItemMaterial_0xm2m")
-position = Vector2(9.75, 106)
+position = Vector2(12, 105)
 shape = SubResource("RectangleShape2D_h2yge")
 debug_color = Color(0.23718661, 0.5690659, 0.773151, 0.41960785)
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=833853182]
-clip_contents = true
-offset_left = -602.0
-offset_top = 94.0
-offset_right = 626.0
-offset_bottom = 116.0
-color = Color(0.54509807, 0.30980393, 0.18039216, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=536482797]
+color = Color(0.4433208, 0.27048415, 9.62615e-08, 1)
+polygon = PackedVector2Array(-597.00006, 95, 624.6667, 95, 625, 115, -601.3334, 115, -601.00006, 96)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=38186158]
 zoom = Vector2(2, 2)
-limit_left = -1000
-limit_right = 1000
-limit_bottom = 500
+limit_left = -2000
+limit_right = 2000
+limit_bottom = 1000
 position_smoothing_enabled = true
 script = ExtResource("3_h2yge")
 
 [node name="CharacterBody2D2" parent="." unique_id=1880748061 instance=ExtResource("1_ig7tw")]
-position = Vector2(10, 0)
+position = Vector2(152, 2)
 CHAR_COLOR = Color(1, 0, 0, 1)
 
-[node name="CharacterBody2D3" parent="." unique_id=238476446 instance=ExtResource("1_ig7tw")]
-position = Vector2(10, 0)
-CHAR_COLOR = Color(0.107795216, 0.34480062, 1, 1)
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1217417801]
+position = Vector2(1, -50)
+scale = Vector2(3, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2" unique_id=155727223]
+color = Color(0.95627636, 0.60089886, 0.38727885, 1)
+polygon = PackedVector2Array(192.66667, 14, 409.6667, -111, 405.6667, -5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=915758006]
+polygon = PackedVector2Array(405.33334, -4, 197, 13, 409.33334, -109)
