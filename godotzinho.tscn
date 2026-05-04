@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://bhl2k14yfognm" path="res://character_body_2d.gd" id="1_xdd6g"]
 [ext_resource type="Texture2D" uid="uid://cnln3jjtxmj3r" path="res://icon.svg" id="2_ubxf8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(126, 126)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsii4"]
+size = Vector2(126, 99)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdd6g"]
+radius = 15.0
+height = 126.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=256313423]
 script = ExtResource("1_xdd6g")
@@ -13,5 +17,16 @@ script = ExtResource("1_xdd6g")
 texture = ExtResource("2_ubxf8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=871790491]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_1bvp3")
+position = Vector2(7.3112926e-07, -0.5000005)
+rotation = -3.1415925
+shape = SubResource("RectangleShape2D_tsii4")
+
+[node name="CollisionShape2DTop" type="CollisionShape2D" parent="." unique_id=428204725]
+position = Vector2(0, -49)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xdd6g")
+
+[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="." unique_id=1171205737]
+position = Vector2(0, 49)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xdd6g")

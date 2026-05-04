@@ -30,11 +30,21 @@ func _physics_process(delta: float) -> void:
 
 	# From here onward, continue normal movement and jump behavior...
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	var standing_on_ally = false
 
-	# Reset jumps when on the floor.
-	if is_on_floor():
+	# Verifica todas as colisões que aconteceram no último movimento
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		# Se o ângulo da colisão for para cima (chão) e o objeto for outro Player
+		if collision.get_normal().dot(Vector2.UP) > 0.5 and collision.get_collider() is CharacterBody2D:
+			standing_on_ally = true
+			break
+
+	# Nova lógica de gravidade
+	if not is_on_floor() and not standing_on_ally:
+		velocity += get_gravity() * delta
+	elif is_on_floor() or standing_on_ally:
+		# Reseta o pulo se estiver no chão OU em cima de um amigo
 		jumps_left = MAX_JUMPS
 
 	# Handle jump and double jump.
@@ -51,3 +61,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+	# Após o move_and_slide, verifique se tem alguém em cima de você
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_normal().dot(Vector2.DOWN) > 0.5: # Colisão vindo do teto
+			var object_above = collision.get_collider()
+			if object_above is CharacterBody2D:
+				# "Empresta" um pouco da sua velocidade para o de cima
+				# para que ele não atue como uma âncora (tira o efeito de lag)
+				object_above.velocity.x = velocity.x
