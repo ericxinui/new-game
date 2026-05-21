@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://cava3fvq6f3ux"]
+
+[ext_resource type="Texture2D" uid="uid://cyn2nyh0hvvim" path="res://assets/Sprout Land pack/Sprite sheets/Icons/white icons.png" id="1_cqx8d"]
+
+[resource]
+atlas = ExtResource("1_cqx8d")
+region = Rect2(32, 0, 16, 16)

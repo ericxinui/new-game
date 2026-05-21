@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://cu632opuhe55s"]
 
 [ext_resource type="Script" uid="uid://df6a01o01ngbo" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dtxcglirgxix1" path="res://godotzinho.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dtxcglirgxix1" path="res://components/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b1n8qciifc1u1" path="res://camera_2d.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://55v65qge6nm" path="res://trampolin.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://b512dcl6oq3y7" path="res://area_2d_portal.gd" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bqa4joh34bf78" path="res://platform.tscn" id="6_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bqa4joh34bf78" path="res://components/platform.tscn" id="6_5vw27"]
 [ext_resource type="Script" uid="uid://d0gb2w7fug4qo" path="res://door_button.gd" id="7_kek77"]
 [ext_resource type="Script" uid="uid://c0et2us1h7fqj" path="res://door.gd" id="8_4c57u"]
 [ext_resource type="Texture2D" uid="uid://ltawtk22at6b" path="res://assets/unpressed_button.tres" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://ont12eyt63g0" path="res://assets/pressed_button.tres" id="9_dg77c"]
+[ext_resource type="PackedScene" uid="uid://boi0ydyeee7n3" path="res://components/spikes.tscn" id="11_efxa6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xm2m"]
 
@@ -234,6 +235,66 @@ libraries/ = SubResource("AnimationLibrary_074og")
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2DDoor" unique_id=751168043]
 color = Color(0.47487456, 0.5368237, 2.0599962e-05, 1)
 polygon = PackedVector2Array(-360, -9, -360, 7, 368, 7, 368, -9)
+
+[node name="Spikes" parent="." unique_id=1905796095 instance=ExtResource("11_efxa6")]
+position = Vector2(1313, -254)
+metadata/_edit_group_ = true
+
+[node name="Spikes2" parent="." unique_id=848292508 instance=ExtResource("11_efxa6")]
+position = Vector2(1329, -254)
+metadata/_edit_group_ = true
+
+[node name="Spikes3" parent="." unique_id=251798990 instance=ExtResource("11_efxa6")]
+position = Vector2(1345, -254)
+metadata/_edit_group_ = true
+
+[node name="Spikes4" parent="." unique_id=138145465 instance=ExtResource("11_efxa6")]
+position = Vector2(1361, -254)
+metadata/_edit_group_ = true
+
+[node name="Spikes5" parent="." unique_id=71709773 instance=ExtResource("11_efxa6")]
+position = Vector2(1377, -254)
+metadata/_edit_group_ = true
+
+[node name="Spikes6" parent="." unique_id=914774057 instance=ExtResource("11_efxa6")]
+position = Vector2(737, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes7" parent="." unique_id=1991071843 instance=ExtResource("11_efxa6")]
+position = Vector2(753, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes8" parent="." unique_id=1886697579 instance=ExtResource("11_efxa6")]
+position = Vector2(769, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes9" parent="." unique_id=636893124 instance=ExtResource("11_efxa6")]
+position = Vector2(785, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes10" parent="." unique_id=1351636094 instance=ExtResource("11_efxa6")]
+position = Vector2(801, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes11" parent="." unique_id=1823966444 instance=ExtResource("11_efxa6")]
+position = Vector2(425, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes12" parent="." unique_id=845799300 instance=ExtResource("11_efxa6")]
+position = Vector2(441, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes13" parent="." unique_id=97949340 instance=ExtResource("11_efxa6")]
+position = Vector2(457, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes14" parent="." unique_id=25740056 instance=ExtResource("11_efxa6")]
+position = Vector2(473, 512)
+metadata/_edit_group_ = true
+
+[node name="Spikes15" parent="." unique_id=1229642854 instance=ExtResource("11_efxa6")]
+position = Vector2(489, 512)
+metadata/_edit_group_ = true
 
 [editable path="StaticBody2DDoorSwitch"]
 [editable path="StaticBody2DDoorSwitch/StaticBody2D2"]

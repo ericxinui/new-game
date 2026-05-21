@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://dtxcglirgxix1"]
+
+[ext_resource type="Script" uid="uid://sf0grlj2scf5" path="res://player.gd" id="1_uapwn"]
+[ext_resource type="Texture2D" uid="uid://dutf8tk31ygpa" path="res://assets/character_sprite.tres" id="2_51jd6"]
+[ext_resource type="Texture2D" uid="uid://cava3fvq6f3ux" path="res://assets/DeathSkull.tres" id="3_uapwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsii4"]
+size = Vector2(96.00001, 72.00001)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdd6g"]
+radius = 15.0
+height = 96.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51jd6"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="Animation" id="Animation_5odhx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SkullSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SkullSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9.536743e-07, -120)]
+}
+
+[sub_resource type="Animation" id="Animation_1kub6"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5707964]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SkullSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SkullSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9.536743e-07, -120), Vector2(0, -168)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kuobi"]
+_data = {
+&"RESET": SubResource("Animation_5odhx"),
+&"death": SubResource("Animation_1kub6")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=256313423 groups=["player"]]
+floor_snap_length = 4.0
+script = ExtResource("1_uapwn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1142863501]
+position = Vector2(3.8146973e-06, -4.000004)
+scale = Vector2(3.9999998, 3.7499998)
+texture = ExtResource("2_51jd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=871790491]
+position = Vector2(6.707467e-06, -12.000006)
+rotation = -3.1415925
+shape = SubResource("RectangleShape2D_tsii4")
+
+[node name="CollisionShape2DTop" type="CollisionShape2D" parent="." unique_id=428204725]
+position = Vector2(0, -49)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xdd6g")
+
+[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="." unique_id=1703474995]
+position = Vector2(0, 40)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_51jd6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2077220448]
+libraries/ = SubResource("AnimationLibrary_kuobi")
+
+[node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=999022360]
+emitting = false
+
+[node name="SkullSprite" type="Sprite2D" parent="." unique_id=924849495]
+visible = false
+texture_filter = 1
+position = Vector2(-9.536743e-07, -120)
+scale = Vector2(4.25, 4.6250005)
+texture = ExtResource("3_uapwn")

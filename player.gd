@@ -2,10 +2,15 @@ extends CharacterBody2D
 
 @export var SPEED = 600.0
 @export var CHAR_COLOR: Color = Color.WHITE
+@onready var animation_player = $AnimationPlayer
+@onready var death_particles = $DeathParticles
+@onready var sprite = $Sprite2D
+
 const JUMP_VELOCITY = -400.0
 const MAX_JUMPS = 2
 
 var jumps_left = MAX_JUMPS
+var is_dead = false
 
 ## Captured once at scene load; used by portals etc. for safe respawn.
 var initial_spawn_global: Vector2
@@ -25,6 +30,9 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	# EARLY RETURN: if not the leader, only apply gravity and stop
+	if is_dead:
+		return
+
 	if not is_active_leader:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
@@ -81,3 +89,24 @@ func _physics_process(delta: float) -> void:
 				# "Empresta" um pouco da sua velocidade para o de cima
 				# para que ele não atue como uma âncora (tira o efeito de lag)
 				object_above.velocity = velocity
+
+func die():
+	if is_dead: # Impede que ele morra duas vezes na mesma colisão
+		return
+		
+	is_dead = true # Trava o processamento de movimento
+	
+	# Desativa todas as formas para não interagir com áreas/plataformas enquanto morre
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+	
+	# Inicia a animação de morte que controla o piscar e as partículas
+	animation_player.play("death")
+	
+	# Aguarda a animação terminar antes de prosseguir
+	await animation_player.animation_finished
+	await get_tree().create_timer(1.0).timeout
+	
+	# Após o feedback visual, reinicia a fase
+	get_tree().reload_current_scene()
